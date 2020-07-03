@@ -1,5 +1,5 @@
 # web-msg
-一个msg wall用python写成
+一个msg wall用python写成<br>
 请修改配置文件：
 config.py
 ```python
@@ -16,8 +16,8 @@ Mysqldb = 'py'
 #请勿修改下面部分
 mysql = 'mysql://{}:{}@{}:{}/{}?use_unicode=1&charset=utf8'.format(MysqlUsername, MysqlPassword, MysqlIp, MysqlPort, Mysqldb)
 ```
-依赖MySQL和Redis数据库
-请自行安装
+依赖MySQL和Redis数据库<br>
+请自行安装<br>
 Redis数据库配置请修改app.py
 ```python
 app.config['SESSION_REDIS'] = Redis(  # redis的服务器参数
