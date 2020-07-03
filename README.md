@@ -25,7 +25,7 @@ app.config['SESSION_REDIS'] = Redis(  # redis的服务器参数
     port=6379)
 ```
 安装依赖软件包
-···python
+```python
 pip install Flask
 pip install bootstrap-flask
 pip install flask-wtf
