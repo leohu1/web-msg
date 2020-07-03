@@ -31,5 +31,6 @@ pip install bootstrap-flask
 pip install flask-wtf
 pip install flask_session
 pip install sqlobject
+ip3 install mysql
 ```
 推荐anaconda环境,基于anaconda开发
