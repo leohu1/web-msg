@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+    <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT"> 
+    <META HTTP-EQUIV="expires" CONTENT="0"> 
+    {% extends "base.html" %}
+    {% from 'bootstrap/utils.html' import render_messages %}
+    {% from 'bootstrap/nav.html' import render_nav_item %}
+    {% from 'bootstrap/form.html' import render_form, render_field %}
+    <meta charset="UTF-8">
+    {% block title %}<title>{{ tit }}</title>{% endblock %}
+</head>
+<body>
+{% block nav %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container">
+        <div class="navbar-nav mr-auto">
+            {{ render_nav_item('index', '中华小学2014届一班留言板') }}
+            {{ render_nav_item('log', '登录') }}
+            {{ render_nav_item('islongin', '注册') }}
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <form method="post">
+        <fieldset>
+            <h1>{{ tit }}</h1>
+            {{ form.csrf_token() }}
+            {{ render_field(form.username) }}
+            {{ render_field(form.password) }}
+            {% if tit == '注册' %}
+            {{ render_field(form.vercode) }}<img src="{{ url_for('vercode') }}" width="107" height="43" class="rounded"><br>
+            {% endif %}
+            {{ render_messages() }}
+            {{ render_field(form.submit, button_style="info") }}
+        </fieldset>
+    </form>
+</div>
+{% endblock %}
+</body>
+</html>

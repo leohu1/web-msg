@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% extends "base.html" %}
+    {% from 'bootstrap/nav.html' import render_nav_item %}
+    {% from 'bootstrap/form.html' import render_form, render_field %}
+    <meta charset="UTF-8">
+    {% block title %}<title>{{ tit }}</title>{% endblock %}
+</head>
+<body>
+{% block nav %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container">
+        <div class="navbar-nav mr-auto">
+            {{ render_nav_item('index', '中华小学2014届一班留言板') }}
+            {{ render_nav_item('log', '登录') }}
+            {{ render_nav_item('islongin', '注册') }}
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>你要的文件逃跑了</h1>
+    </div>
+{% endblock %}
+</body>
+</html>

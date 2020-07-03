@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% extends "base.html" %}
+    {% from 'bootstrap/nav.html' import render_nav_item %}
+    {% from 'bootstrap/form.html' import render_form, render_field %}
+    <meta charset="UTF-8">
+    {% block title %}<title>{{ tit }}</title>{% endblock %}
+</head>
+<body>
+{% block nav %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container">
+        <div class="navbar-nav mr-auto">
+            {{ render_nav_item('index', '中华小学2014届一班留言板') }}
+            {{ render_nav_item('log', '登录') }}
+            {{ render_nav_item('islongin', '注册') }}
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% if errs == 'logd' %}
+    <br>
+    <div class="alert alert-warning">已登录</div>
+    <br>
+    {% elif errs == 'no' %}
+    <br>
+    <div class="alert alert-danger">
+            失败
+            <a class="alert-link" href='{{url_for('islongin')}}'>注册</a>
+    </div>
+    <br>
+    {% endif %}
+    
+    
+</div>
+{% endblock %}
+</body>
+</html>

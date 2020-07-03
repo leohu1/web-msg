@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% extends "base.html" %}
+    {% from 'bootstrap/nav.html' import render_nav_item %}
+    {% from 'bootstrap/form.html' import render_form, render_field %}
+    <meta charset="UTF-8">
+    {% block title %}<title>消息</title>{% endblock %}
+</head>
+<body>
+{% block nav %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container">
+        <div class="navbar-nav mr-auto">
+            {{ render_nav_item('index', '中华小学2014届一班留言板') }}
+            {{ render_nav_item('log', '登录') }}
+            {{ render_nav_item('islongin', '注册') }}
+            {% if admin == True %}
+            {{ render_nav_item('back', '后台') }}
+            {% endif %}
+            {% if show != None %}
+            {{ render_nav_item('out', '退出('+show[0]+')') }}
+            {% endif %}
+            
+        </div>
+    </div>
+</nav>
+{% endblock %}
+<br>
+{% block content %}
+    <div class="container">
+        <form method="post">
+            <br>
+            {% if show != None %}
+                {{ form.csrf_token() }}
+                {{ render_field(form.text) }}
+                {{ render_field(form.submit, button_style="info") }}
+            {% else %}
+                <div class="alert alert-warning">请注册或登录</div>
+            {% endif %}
+            <br>
+            <table class="table table-hover">
+                <tr>
+                    <th >姓名</th>
+                    <th >消息</th>
+                    {#<th>时间</th>#}
+                    <th >删除</th>
+                </tr>
+                {% for key in data %}
+                    <tr>
+                        <td>{{ data[key].name }}</td>
+                        <td>{{ data[key].msg }}</td>
+                        <td>{{ data[key].date }}</td>
+                        <td>
+                            {% if show[0] == data[key].name %}
+                            <a class="btn btn-danger btn-sm" href="{{ url_for('delete_note', tab_id=data[key].id) }}">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+{% endblock %}
+</body>
+</html>
