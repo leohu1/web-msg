@@ -32,10 +32,10 @@
         <br>
         <table class="table table-hover">
             <tr>
-                <th >姓名</th>
-                <th >消息</th>
+                <th>姓名</th>
+                <th>消息</th>
                 <th>时间</th>
-                <th >删除</th>
+                <th>删除</th>
             </tr>
         {% for key in data %}
             <tr>
@@ -49,21 +49,35 @@
             </tr>
         {% endfor %}
         </table>
+        <h6><span class="badge badge-primary">一共{{ nom[0] }}条消息</span></h6>
         <table class="table table-hover">
             <tr>
-                <th >姓名</th>
-                <th >密码</th>
-                <th >删除</th>
+                <th>姓名</th>
+                <th>密码</th>
+                <th>删除</th>
             </tr>
         {% for key in userdata %}
             <tr>
                 <td>{{ userdata[key].user }}</td>
-                <td>{{ userdata[key].password }}</td>
+                <td id="{{ userdata[key].user }}" onclick="
+                        $('#{{ userdata[key].user }}').text(function(i,origText){
+                            if (origText==='{{ userdata[key].password }}'){
+                                return '{{ base64.b64decode(userdata[key].password.encode()).decode() }}';
+                        }
+                            else if (origText==='{{ base64.b64decode(userdata[key].password.encode()).decode() }}'){
+                                return '{{ userdata[key].password }}';
+                        }
+                        })
+
+                        ">{{ userdata[key].password }}</td>
                 <td><a class="btn btn-danger btn-sm" href="{{ url_for('wdelete_user', user_id=userdata[key].id) }}">Delete</a></td>
             </tr>
         {% endfor %}
         </table>
+        <h6><span class="badge badge-primary">一共{{ nom[1] }}个用户</span></h6>
     </div>
+
 {% endblock %}
+
 </body>
 </html>
